@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muhammad Mujahid — Full-Stack Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&family=DM+Mono:wght@400;500&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0D1117;
+    --ink-2: #1C2333;
+    --ink-3: #374151;
+    --mid: #6B7280;
+    --light: #9CA3AF;
+    --rule: #E5E7EB;
+    --rule-2: #F3F4F6;
+    --accent: #1246AC;
+    --accent-2: #1A56D4;
+    --accent-pale: #EBF1FC;
+    --accent-pale-2: #DBEAFE;
+    --gold: #B45309;
+    --gold-pale: #FEF3C7;
+    --green: #065F46;
+    --green-pale: #D1FAE5;
+    --page: #FFFFFF;
+    --sidebar: #F8F9FB;
+  }
+
+  html { font-size: 10px; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #CDD5E0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 3rem 1rem;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    background: var(--page);
+    box-shadow: 0 4px 60px rgba(0,0,0,0.18), 0 1px 4px rgba(0,0,0,0.08);
+    display: grid;
+    grid-template-columns: 68mm 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* ── LEFT SIDEBAR ── */
+  .sidebar {
+    background: var(--sidebar);
+    border-right: 1px solid var(--rule);
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sidebar-header {
+    background: var(--ink);
+    padding: 2.8rem 2.2rem 2.4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sidebar-header::before {
+    content: '';
+    position: absolute;
+    top: -2rem; right: -2rem;
+    width: 10rem; height: 10rem;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0.18;
+  }
+
+  .sidebar-header::after {
+    content: '';
+    position: absolute;
+    bottom: -1rem; left: -1rem;
+    width: 6rem; height: 6rem;
+    border-radius: 50%;
+    background: var(--accent-2);
+    opacity: 0.12;
+  }
+
+  .name {
+    font-family: 'Playfair Display', serif;
+    font-weight: 800;
+    font-size: 2.6rem;
+    line-height: 1.08;
+    color: #FFFFFF;
+    letter-spacing: -0.02em;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 0.7rem;
+  }
+
+  .name span {
+    color: var(--accent-pale-2);
+  }
+
+  .title-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 2rem;
+    padding: 0.35rem 1rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #CBD5E1;
+    letter-spacing: 0.02em;
+    position: relative;
+    z-index: 1;
+  }
+
+  .title-tag::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #4ADE80;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .sidebar-body {
+    padding: 2rem 2.2rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2.2rem;
+  }
+
+  .s-section-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .s-section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--accent);
+    opacity: 0.2;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .contact-icon {
+    width: 2rem; height: 2rem;
+    border-radius: 0.5rem;
+    background: var(--accent-pale);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 1rem;
+  }
+
+  .contact-text {
+    font-size: 1.05rem;
+    color: var(--ink-3);
+    line-height: 1.4;
+    word-break: break-all;
+  }
+
+  .contact-text a {
+    color: var(--accent-2);
+    text-decoration: none;
+  }
+
+  /* Skills */
+  .skill-group { margin-bottom: 1.2rem; }
+
+  .skill-group-name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--ink-2);
+    margin-bottom: 0.5rem;
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.82rem;
+    padding: 0.28rem 0.65rem;
+    border-radius: 0.35rem;
+    background: var(--accent-pale);
+    color: var(--accent);
+    border: 1px solid rgba(18,70,172,0.12);
+    white-space: nowrap;
+  }
+
+  .tag.backend { background: #F0FDF4; color: #065F46; border-color: rgba(6,95,70,0.12); }
+  .tag.db { background: #FFF7ED; color: #92400E; border-color: rgba(146,64,14,0.12); }
+  .tag.tool { background: #F5F3FF; color: #4C1D95; border-color: rgba(76,29,149,0.12); }
+
+  /* Achievements sidebar */
+  .ach-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    padding: 0.9rem 1rem;
+    background: var(--page);
+    border-radius: 0.6rem;
+    border: 1px solid var(--rule);
+    margin-bottom: 0.7rem;
+  }
+
+  .ach-icon {
+    font-size: 1.4rem;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .ach-text {
+    font-size: 1rem;
+    color: var(--ink-3);
+    line-height: 1.4;
+  }
+
+  .ach-text strong {
+    display: block;
+    font-weight: 600;
+    color: var(--ink);
+    font-size: 1rem;
+  }
+
+  /* Certifications */
+  .cert-item {
+    padding: 0.8rem 1rem;
+    border-left: 2.5px solid var(--accent);
+    background: var(--accent-pale);
+    border-radius: 0 0.5rem 0.5rem 0;
+    margin-bottom: 0.65rem;
+  }
+
+  .cert-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+
+  .cert-org {
+    font-size: 0.9rem;
+    color: var(--mid);
+    margin-top: 0.15rem;
+  }
+
+  /* Languages */
+  .lang-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.6rem;
+  }
+
+  .lang-name {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--ink-2);
+  }
+
+  .lang-level {
+    font-size: 0.85rem;
+    color: var(--mid);
+  }
+
+  .lang-dots {
+    display: flex;
+    gap: 3px;
+    margin-top: 0.25rem;
+  }
+
+  .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+  }
+
+  .dot.filled { background: var(--accent); }
+  .dot.empty { background: var(--rule); }
+
+
+  /* ── RIGHT MAIN ── */
+  .main {
+    padding: 2.8rem 2.6rem 2.8rem 2.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  /* Impact bar at top */
+  .impact-bar {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.8rem;
+    margin-bottom: 2.4rem;
+    padding-bottom: 2.2rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .impact-stat {
+    text-align: center;
+    padding: 1.2rem 0.8rem;
+    background: var(--rule-2);
+    border-radius: 0.8rem;
+    border: 1px solid var(--rule);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .impact-stat::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--accent);
+  }
+
+  .impact-stat:nth-child(2)::before { background: var(--green); }
+  .impact-stat:nth-child(3)::before { background: var(--gold); }
+
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.6rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+
+  .stat-number span { font-size: 1.6rem; }
+
+  .stat-label {
+    font-size: 0.9rem;
+    color: var(--mid);
+    font-weight: 400;
+    line-height: 1.3;
+  }
+
+  /* Section */
+  .section { margin-bottom: 2.2rem; }
+
+  .section-heading {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1.4rem;
+  }
+
+  .section-heading h2 {
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+
+  .section-heading::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  /* Summary */
+  .summary-text {
+    font-size: 1.12rem;
+    line-height: 1.7;
+    color: var(--ink-3);
+    font-weight: 400;
+  }
+
+  .summary-text strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  /* Experience */
+  .exp-item {
+    margin-bottom: 1.8rem;
+    padding-left: 1.4rem;
+    border-left: 2px solid var(--rule);
+    position: relative;
+  }
+
+  .exp-item::before {
+    content: '';
+    position: absolute;
+    left: -4.5px; top: 0.4rem;
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--page);
+    box-shadow: 0 0 0 1.5px var(--accent);
+  }
+
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .exp-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+
+  .exp-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.9rem;
+    color: var(--mid);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .exp-company {
+    font-size: 1rem;
+    color: var(--accent-2);
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+  }
+
+  .exp-company span {
+    color: var(--light);
+    font-weight: 400;
+    margin: 0 0.3rem;
+  }
+
+  .bullets { list-style: none; }
+
+  .bullets li {
+    font-size: 1.04rem;
+    color: var(--ink-3);
+    line-height: 1.55;
+    margin-bottom: 0.45rem;
+    padding-left: 1.1rem;
+    position: relative;
+  }
+
+  .bullets li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 0.85rem;
+    top: 0.1em;
+  }
+
+  .metric {
+    display: inline;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  /* Projects */
+  .project-item {
+    background: var(--rule-2);
+    border: 1px solid var(--rule);
+    border-radius: 0.8rem;
+    padding: 1.2rem 1.4rem;
+    margin-bottom: 1rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .project-item.featured {
+    background: var(--accent-pale);
+    border-color: rgba(18,70,172,0.2);
+  }
+
+  .project-item.featured::before {
+    content: 'FLAGSHIP';
+    position: absolute;
+    top: 0.8rem; right: 1rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    background: var(--accent-pale-2);
+    padding: 0.2rem 0.6rem;
+    border-radius: 99px;
+    border: 1px solid rgba(18,70,172,0.2);
+  }
+
+  .proj-title {
+    font-size: 1.08rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.3rem;
+    padding-right: 6rem;
+  }
+
+  .proj-stack {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+
+  .proj-desc {
+    font-size: 1rem;
+    color: var(--ink-3);
+    line-height: 1.5;
+  }
+
+  .proj-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--accent-2);
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  /* Education */
+  .edu-item {
+    display: flex;
+    gap: 1.2rem;
+    align-items: flex-start;
+    margin-bottom: 1.2rem;
+  }
+
+  .edu-icon {
+    width: 3.2rem; height: 3.2rem;
+    border-radius: 0.7rem;
+    background: var(--accent-pale);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem;
+    flex-shrink: 0;
+    border: 1px solid rgba(18,70,172,0.12);
+  }
+
+  .edu-degree {
+    font-size: 1.06rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+
+  .edu-inst {
+    font-size: 0.98rem;
+    color: var(--accent-2);
+    font-weight: 500;
+    margin: 0.15rem 0;
+  }
+
+  .edu-detail {
+    font-size: 0.92rem;
+    color: var(--mid);
+    line-height: 1.4;
+  }
+
+  @media print {
+    body { background: white; padding: 0; }
+    .page { box-shadow: none; width: 100%; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ══ SIDEBAR ══ -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="name">Muhammad<br><span>Mujahid</span></div>
+      <br>
+      <div class="title-tag">Available Immediately</div>
+    </div>
+
+    <div class="sidebar-body">
+
+      <!-- Contact -->
+      <div>
+        <div class="s-section-label">Contact</div>
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div class="contact-text">+92 308 278 9210</div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div class="contact-text">mujahidaryan222149<br>@gmail.com</div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div class="contact-text">Karachi, Pakistan</div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">💻</div>
+          <div class="contact-text"><a href="https://github.com/Mujahidaryan">github.com/Mujahidaryan</a></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🔗</div>
+          <div class="contact-text"><a href="https://linkedin.com/in/muhammad-mujahid-dev">linkedin.com/in/<br>muhammad-mujahid-dev</a></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🌐</div>
+          <div class="contact-text"><a href="https://agrotrace-n65b.vercel.app">agrotrace-n65b.vercel.app</a></div>
+        </div>
+      </div>
+
+      <!-- Skills -->
+      <div>
+        <div class="s-section-label">Skills</div>
+
+        <div class="skill-group">
+          <div class="skill-group-name">Frontend</div>
+          <div class="skill-tags">
+            <span class="tag">Next.js</span>
+            <span class="tag">React.js</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">Tailwind CSS</span>
+            <span class="tag">HTML5 / CSS3</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-name">Backend</div>
+          <div class="skill-tags">
+            <span class="tag backend">Node.js</span>
+            <span class="tag backend">Express.js</span>
+            <span class="tag backend">FastAPI</span>
+            <span class="tag backend">Python</span>
+            <span class="tag backend">REST APIs</span>
+            <span class="tag backend">JWT / Auth</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-name">Database</div>
+          <div class="skill-tags">
+            <span class="tag db">PostgreSQL</span>
+            <span class="tag db">MySQL</span>
+            <span class="tag db">MongoDB</span>
+            <span class="tag db">Prisma ORM</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-name">Tools & Platforms</div>
+          <div class="skill-tags">
+            <span class="tag tool">Git / GitHub</span>
+            <span class="tag tool">Vercel</span>
+            <span class="tag tool">Docker (Basic)</span>
+            <span class="tag tool">Figma</span>
+            <span class="tag tool">OpenAI API</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Achievements -->
+      <div>
+        <div class="s-section-label">Achievements</div>
+        <div class="ach-item">
+          <div class="ach-icon">🥇</div>
+          <div class="ach-text">
+            <strong>1st Place — Python Hackathon</strong>
+            Bahria University, 2022
+          </div>
+        </div>
+        <div class="ach-item">
+          <div class="ach-icon">🎓</div>
+          <div class="ach-text">
+            <strong>100% Exam Participation</strong>
+            Digi Explorer Exam 2025, Roots Millennium
+          </div>
+        </div>
+        <div class="ach-item">
+          <div class="ach-icon">📜</div>
+          <div class="ach-text">
+            <strong>Letter of Appreciation</strong>
+            Future World School & College, 2025
+          </div>
+        </div>
+      </div>
+
+      <!-- Certifications -->
+      <div>
+        <div class="s-section-label">Certifications</div>
+        <div class="cert-item">
+          <div class="cert-name">MQIP Professional Teaching Certificate</div>
+          <div class="cert-org">Millennium Institute · Jan 2025</div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-name">Certification in Graphic Design</div>
+          <div class="cert-org">TUESDEC, Karachi · 2018–2019</div>
+        </div>
+      </div>
+
+      <!-- Languages -->
+      <div>
+        <div class="s-section-label">Languages</div>
+        <div class="lang-item">
+          <div>
+            <div class="lang-name">Urdu</div>
+            <div class="lang-dots">
+              <div class="dot filled"></div><div class="dot filled"></div>
+              <div class="dot filled"></div><div class="dot filled"></div>
+              <div class="dot filled"></div>
+            </div>
+          </div>
+          <div class="lang-level">Native</div>
+        </div>
+        <div class="lang-item">
+          <div>
+            <div class="lang-name">English</div>
+            <div class="lang-dots">
+              <div class="dot filled"></div><div class="dot filled"></div>
+              <div class="dot filled"></div><div class="dot filled"></div>
+              <div class="dot empty"></div>
+            </div>
+          </div>
+          <div class="lang-level">Professional</div>
+        </div>
+      </div>
+
+    </div>
+  </aside>
+
+  <!-- ══ MAIN CONTENT ══ -->
+  <main class="main">
+
+    <!-- Impact Stats -->
+    <div class="impact-bar">
+      <div class="impact-stat">
+        <div class="stat-number">5<span>+</span></div>
+        <div class="stat-label">Production Apps<br>Shipped Live</div>
+      </div>
+      <div class="impact-stat">
+        <div class="stat-number">80<span>%</span></div>
+        <div class="stat-label">Manual Workload<br>Reduced via AI</div>
+      </div>
+      <div class="impact-stat">
+        <div class="stat-number">3<span>yr</span></div>
+        <div class="stat-label">Cambridge CS<br>Teaching Experience</div>
+      </div>
+    </div>
+
+    <!-- Summary -->
+    <div class="section">
+      <div class="section-heading"><h2>Profile</h2></div>
+      <p class="summary-text">
+        Full-Stack Developer with <strong>2+ years of hands-on production experience</strong> in Next.js, Node.js, FastAPI, and PostgreSQL. I don't just write code — I architect, deploy, and own entire systems end to end. I've built AI-powered features that <strong>cut manual workloads by 80%</strong>, optimized APIs to run <strong>30% faster</strong>, and shipped 5+ live applications for real clients.
+        <br><br>
+        Three years of <strong>Cambridge O-Level CS teaching</strong> gives me something most developers lack: the ability to communicate complex systems clearly to any audience. I document well, collaborate naturally, and can contribute from <strong>day one</strong> without a long onboarding curve.
+      </p>
+    </div>
+
+    <!-- Experience -->
+    <div class="section">
+      <div class="section-heading"><h2>Experience</h2></div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <div class="exp-title">Full-Stack Developer</div>
+          <div class="exp-date">May 2023 – Present</div>
+        </div>
+        <div class="exp-company">Freelance — Self-Employed <span>·</span> Karachi (Remote)</div>
+        <ul class="bullets">
+          <li>Designed and deployed <span class="metric">5+ production web applications</span> in Next.js, FastAPI, and PostgreSQL — all live with real client usage on Vercel</li>
+          <li>Reduced API response time by <span class="metric">30%</span> through database indexing, query optimization, and server-side caching</li>
+          <li>Built AI-powered automation with OpenAI API, reducing client manual workload by <span class="metric">80%</span> through intelligent task suggestion</li>
+          <li>Managed full development lifecycle: requirements, system architecture, development, QA, and deployment — solo</li>
+        </ul>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <div class="exp-title">CS Instructor & Academic Mentor</div>
+          <div class="exp-date">Jun 2022 – Jan 2026</div>
+        </div>
+        <div class="exp-company">Roots Millennium Schools <span>·</span> Commander Schooling & College <span>·</span> Karachi</div>
+        <ul class="bullets">
+          <li>Delivered Cambridge O-Level & IGCSE Computer Science (2210 · 0417 · 0478) to <span class="metric">30+ students per class</span> — achieved 100% Digi Explorer participation</li>
+          <li>Led hands-on programming labs in Python, Java, C# and web technologies; introduced digital literacy to Years 7–8</li>
+          <li>Mentored <span class="metric">5+ student capstone projects</span> from concept to production deployment</li>
+          <li>Built a skill no developer gets from code alone: making technical decisions <em>understandable</em> to non-technical stakeholders</li>
+        </ul>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <div class="exp-title">Software Engineering Intern</div>
+          <div class="exp-date">Jun 2022 – Nov 2022</div>
+        </div>
+        <div class="exp-company">Poulta, Inc. <span>·</span> Karachi (Hybrid)</div>
+        <ul class="bullets">
+          <li>Built secure auth system using NextAuth.js + JWT, cutting unauthorized access incidents by <span class="metric">40%</span></li>
+          <li>Developed AI-powered task suggestion module (OpenAI API) — boosted team productivity by <span class="metric">35%</span></li>
+          <li>Led code reviews and maintained technical docs, reducing developer onboarding time by <span class="metric">20%</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Projects -->
+    <div class="section">
+      <div class="section-heading"><h2>Projects</h2></div>
+
+      <div class="project-item featured">
+        <div class="proj-title">AgroTrace — Food Supply Tracking Dashboard</div>
+        <div class="proj-stack">Next.js · Node.js · PostgreSQL · MongoDB · TypeScript · REST APIs · Tailwind CSS</div>
+        <div class="proj-desc">Full-stack real-time supply chain intelligence platform — tracks food distribution from Sindh & Punjab farms to global exports. Includes live data visualization, admin controls, and API-driven architecture. Demonstrates infrastructure applicable to large-scale logistics and development organizations.</div>
+        <a class="proj-link" href="https://agrotrace-n65b.vercel.app">🔗 Live: agrotrace-n65b.vercel.app</a>
+      </div>
+
+      <div class="project-item">
+        <div class="proj-title">AI-Powered Smart Task Manager <span style="font-size:0.85rem;color:#6B7280;font-weight:400;">— In Progress</span></div>
+        <div class="proj-stack">Next.js · FastAPI · PostgreSQL · OpenAI API · JWT · TypeScript</div>
+        <div class="proj-desc">Full-stack AI task management system with smart suggestions reducing manual workload by 80%. Optimized REST APIs achieve 30% faster response times. Production-grade auth deployed on Vercel.</div>
+      </div>
+
+      <div class="project-item">
+        <div class="proj-title">Learning Management System (LMS)</div>
+        <div class="proj-stack">Next.js · Node.js · PostgreSQL · Prisma ORM · Tailwind CSS</div>
+        <div class="proj-desc">Complete LMS with course management, grading, multi-role discussion forums, and mobile-first UI. Built on type-safe Prisma ORM for performant database access.</div>
+      </div>
+    </div>
+
+    <!-- Education -->
+    <div class="section">
+      <div class="section-heading"><h2>Education</h2></div>
+
+      <div class="edu-item">
+        <div class="edu-icon">🎓</div>
+        <div>
+          <div class="edu-degree">BSE Software Engineering — In Progress</div>
+          <div class="edu-inst">University of Karachi</div>
+          <div class="edu-detail">2025 – Present · Continuing studies alongside professional development work</div>
+        </div>
+      </div>
+
+      <div class="edu-item">
+        <div class="edu-icon">📘</div>
+        <div>
+          <div class="edu-degree">Software Engineering — Coursework Completed</div>
+          <div class="edu-inst">Bahria University, Karachi · 2019 – 2023</div>
+          <div class="edu-detail">Data Structures · OOP · SDLC · Web Technologies · Database Systems<br>Capstone: Dynamic Learning Management System (LMS) — led front-end development</div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+</body>
+</html>
